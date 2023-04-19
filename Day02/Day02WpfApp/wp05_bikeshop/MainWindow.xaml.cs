@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Wp02_simplecon
+namespace wp05_bikeshop
 {
     /// <summary>
     /// MainWindow.xaml에 대한 상호 작용 논리
@@ -24,11 +23,6 @@ namespace Wp02_simplecon
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void SldStep_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            Pgbstep.Value = SldStep.Value;
         }
     }
 }
