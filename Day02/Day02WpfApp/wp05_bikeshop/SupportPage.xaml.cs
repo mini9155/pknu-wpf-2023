@@ -43,7 +43,6 @@ namespace wp05_bikeshop
 
         private void SldValue_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            PgbVal
         }
     }
 }
