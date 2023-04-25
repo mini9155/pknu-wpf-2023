@@ -34,3 +34,12 @@
 	- MVVM 패턴
 	- MVVM framework / Caliburn
 	- 데이터바인딩 DB연동
+	
+	
+## 6일차
+- WPF 응용
+	- 영화 검색앱
+		- TMDB Open API
+		- MahaApps.Metro
+		- MahaApps.Metro.IconPacks
+		- Newtonsoft.Json
