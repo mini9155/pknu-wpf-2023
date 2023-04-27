@@ -16,7 +16,7 @@ namespace wp11_movieFinder.Models
         public int Id { get; set; }
         public string Overview { get; set; }
         public string Orignal_Language { get; set; }
-        public string Poster_path { get; set; }
+        public string Poster_Path { get; set; }
         public bool Adult { get; set; }
         public DateTime Reg_Date { get; set; }
     }

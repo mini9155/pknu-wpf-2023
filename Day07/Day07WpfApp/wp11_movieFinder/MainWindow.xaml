@@ -21,6 +21,7 @@
             <RowDefinition Height="60"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="80"/>
+            <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
         <!--0,0 칸 영역 설정-->
@@ -110,7 +111,7 @@
 
             <!--즐겨찾기 보기 버튼-->
             <Button x:Name="BtnViewFavorite" Content="즐겨찾기 보기" Margin="5, 20" FontSize="12"
-                    Style="{StaticResource MahApps.Styles.Button.MetroSquare.Accent}">
+                    Style="{StaticResource MahApps.Styles.Button.MetroSquare.Accent}" Click="BtnViewFavorite_Click">
                 <Button.ContentTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -123,7 +124,7 @@
             
             <!--즐겨찾기 삭제-->
             <Button x:Name="BtnDelete" Content="즐겨찾기 삭제" Margin="5, 20" FontSize="12"
-                    Style="{StaticResource MahApps.Styles.Button.MetroSquare.Accent}">
+                    Style="{StaticResource MahApps.Styles.Button.MetroSquare.Accent}" Click="BtnDelete_Click">
                 <Button.ContentTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -151,5 +152,10 @@
         </StackPanel>
         
         <!--#endregion-->
+        <StatusBar Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" FontFamily="NaNumGothic" Margin="-10">
+            <StatusBarItem Content="TMDB &amp; Youtuve OpenAPI App"/>
+            <Separator Style="{StaticResource MahApps.Styles.Separator.StatusBar}"/>
+            <StatusBarItem x:Name="StsResult"/>
+        </StatusBar>
     </Grid>
 </mah:MetroWindow>

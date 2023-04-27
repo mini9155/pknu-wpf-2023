@@ -21,7 +21,7 @@ namespace wp11_movieFinder.Models
 
         public string Original_Language { get; set; }
 
-        public string Poster_path { get; set; }
+        public string Poster_Path { get; set; }
 
 
 
