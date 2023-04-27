@@ -43,3 +43,23 @@
 		- MahaApps.Metro
 		- MahaApps.Metro.IconPacks
 		- Newtonsoft.Json
+		
+## 7일차
+- WPF 응용
+	- 영화 검색앱
+		- 화면 정리
+		- Youtube Open API
+		- DB바인딩
+		
+		
+## 9일차
+
+-WPF 응용
+	- 미세먼지확인 앱 완료
+		- MahaApps.Metro
+		- 데이터포털 OpenAPI
+		- DB 데이터바인딩(MySQL)
+	- 기본 포트폴리오 개발 방식
+		- 데이터포털 OpenAPI
+		- 네이버,카카오 OpenAPI
+		- 기타 OpenAPI
