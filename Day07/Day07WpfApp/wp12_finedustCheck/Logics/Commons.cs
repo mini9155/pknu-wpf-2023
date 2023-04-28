@@ -12,7 +12,11 @@ namespace wp12_finedustCheck.Logics
     public class Commons
     {
 
-        public static readonly string connString = "Sever=localhost; Port=3306; userid=root; password=1234; Database=dunstsensor; Uid = root; Pwd=1234;";
+        public static readonly string myConnString = "Server=localhost;" +
+                                                     "Port=3306;" +
+                                                     "Database=miniproject;" +
+                                                     "Uid=root;" +
+                                                     "Pwd=12345;";
 
 
         //연결 문자열 담을 변수
