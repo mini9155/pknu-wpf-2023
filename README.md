@@ -82,5 +82,5 @@
 		- 오류 처리
 		
 <img 
-src ="https://github.com/mini9155/pknu-wpf-2023/blob/main/Mart/Mart.sln](https://github.com/mini9155/pknu-wpf-2023/blob/main/Mart/mart.gif">
+src ="https://github.com/mini9155/pknu-wpf-2023/blob/main/Mart/mart.gif">
 
