@@ -69,18 +69,18 @@
 		- 기타 OpenAPI
 		
 ## 10일차
--WPF 응용
+- WPF 응용
 	- 개인 포트폴리오 만들기
 		- OpenAPI 신청
 		- 디자인 설계
 		- 기본 세팅 완료
 ## 11일차
--WPF 응용
+- WPF 응용
 	- 개인 포트폴리오 만들기
 		- 콤보박스 중복 결과 출력
 		- 전체값 출력
 		- 오류 처리
 		
 <img 
-src = "https://github.com/mini9155/pknu-wpf-2023/blob/main/Mart/Mart.sln">
+src = "[https://github.com/mini9155/pknu-wpf-2023/blob/main/Mart/Mart.sln](https://github.com/mini9155/pknu-wpf-2023/blob/main/Mart/mart.gif)">
 
