@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wpf_Bus"
         xmlns:mah ="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:iconPack ="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
                  Loaded="MetroWindow_Loaded"
-        Title="MainWindow" Height="450" Width="800" >
+        Title="Mart V1.0" Height="450" Width="800" NonActiveWindowTitleBrush="#FFA74444" Icon="/No_Picture.png"  >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
@@ -18,13 +19,24 @@
                 <ColumnDefinition Width="250"/>
                 <ColumnDefinition Width="550"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Content="부산광역시_생활필수품 가격 정보" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10"/>
+            <Label Grid.Column="0" Content="부산광역시_생활필수품 가격 정보" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10,0,15,0"/>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                <ComboBox x:Name="Cbogugun" Width="100" SelectionChanged="Cbogugun_SelectionChanged"/>
-                <ComboBox x:Name="CbopumNm" Width="100" SelectionChanged="CbopumNm_SelectionChanged"/>
-                <Button Content="검색" FontSize="15" x:Name="BtnBus" Width="100" Click="BtnBus_Click"/>
+                <ComboBox x:Name="Cbogugun" Width="200" mah:TextBoxHelper.Watermark="구를 선택해주세요" mah:TextBoxHelper.ClearTextButton="True" Margin="10" IsReadOnly="True" HorizontalAlignment="Center"/>
+                <ComboBox x:Name="CbopumNm" Width="200" mah:TextBoxHelper.Watermark="카테고리를 선택해주세요" mah:TextBoxHelper.ClearTextButton="True" Margin="10" IsReadOnly="True" HorizontalAlignment="Center"/>
+                <Button Margin="10" Content="검색" FontSize="15" x:Name="BtnBus" Width="100" Click="BtnBus_Click" Style="{StaticResource MahApps.Styles.Button.Square.Highlight}" Background="#CC825A2C"/>
             </StackPanel>
         </Grid>
-        <DataGrid Grid.Row="1" x:Name="DgbMart" ItemsSource="{Binding}" IsReadOnly="True"/>
+        <DataGrid Grid.Row="1" x:Name="DgbMart" ItemsSource="{Binding}"  IsReadOnly="True" AutoGenerateColumns="False" Style = "{StaticResource MahApps.Styles.DataGrid.Azure}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="1차 품목" Binding="{Binding pumNm}" Width="Auto" />
+                <DataGridTextColumn Header="품명" Binding="{Binding itemName}" Width="Auto"/>
+                <DataGridTextColumn Header="구" Binding="{Binding gugunNm}" Width="Auto"/>
+                <DataGridTextColumn Header="판매 지점" Binding="{Binding bsshNm}" Width="Auto" />
+                <DataGridTextColumn Header="가격(원)" Binding="{Binding unitprice, StringFormat={}{0:#,###}원}" Width="Auto"/>
+                <DataGridTextColumn Header="주소" Binding="{Binding adres}" Width="Auto"/>
+                <DataGridTextColumn Header="단위" Binding="{Binding unit}" Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </mah:MetroWindow>

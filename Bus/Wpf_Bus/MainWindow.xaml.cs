@@ -4,11 +4,9 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace Wpf_Bus
 {
@@ -22,10 +20,12 @@ namespace Wpf_Bus
             InitializeComponent();
         }
 
+
         private async void BtnBus_Click(object sender, RoutedEventArgs e)
         {
             string openApiUri = "https://apis.data.go.kr/6260000/BusanLifeInfoService/getLifeInfo?serviceKey=HVto27eamBEo1E7tjkDl7GVSuHLlwZcM2XpUQB691yS14zX9Wu1OK5ZNqnOzK5REs8adTJvOTuUNABJgDw8x7Q%3D%3D&pageNo=1&numOfRows=1000&resultType=json";
             string result = string.Empty;
+
 
             WebRequest req = null;
             WebResponse res = null;
@@ -69,9 +69,20 @@ namespace Wpf_Bus
             {
             }
 
-
+            if (Cbogugun.SelectedIndex != -1 && CbopumNm.SelectedIndex != -1)
+            {
+                CboAll_Select();
+            }
+            else if (Cbogugun.SelectedIndex != -1)
+            {
+                Cbogugun_Select();
+            }
+            else if (CbopumNm.SelectedIndex != -1)
+            {
+                CbopumNm_Select();
+            }
         }
-            
+
 
 
         #region<SQL 데이터 저장>
@@ -174,9 +185,10 @@ namespace Wpf_Bus
             }
         }
 
-        private void Cbogugun_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private void Cbogugun_Select()
         {
-            using (MySqlConnection conn = new MySqlConnection(Myconn.conn)) 
+            using (MySqlConnection conn = new MySqlConnection(Myconn.conn))
             {
                 var query = $@"SELECT pumNm,
                                     itemName,
@@ -187,7 +199,7 @@ namespace Wpf_Bus
                                     unit
                                     FROM
                                     mart
-                                    WHERE gugunNm = @gugunNm";
+                                    WHERE gugunNm = @gugunNm ";
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@gugunNm", Cbogugun.SelectedValue.ToString());
@@ -203,6 +215,7 @@ namespace Wpf_Bus
                         pumNm = Convert.ToString(row["pumNm"]),
                         itemName = Convert.ToString(row["itemName"]),
                         gugunNm = Convert.ToString(row["gugunNm"]),
+                        bsshNm = Convert.ToString(row["bsshNm"]),
                         unitprice = Convert.ToInt32(row["unitprice"]),
                         adres = Convert.ToString(row["adres"]),
                         unit = Convert.ToDouble(row["unit"])
@@ -210,11 +223,52 @@ namespace Wpf_Bus
                 }
                 this.DataContext = MartItems;
             }
-
         }
 
-        private void CbopumNm_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //private void Cbogugun_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    using (MySqlConnection conn = new MySqlConnection(Myconn.conn))
+        //    {
+        //        var query = $@"SELECT pumNm,
+        //                            itemName,
+        //                            gugunNm,
+        //                            bsshNm,
+        //                            unitprice,
+        //                            adres,
+        //                            unit
+        //                            FROM
+        //                            mart
+        //                            WHERE gugunNm = @gugunNm ";
+
+        //        MySqlCommand cmd = new MySqlCommand(query, conn);
+        //        cmd.Parameters.AddWithValue("@gugunNm", Cbogugun.SelectedValue.ToString());
+        //        MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+        //        DataSet mi = new DataSet();
+        //        adapter.Fill(mi, "mart");
+        //        List<martItem> MartItems = new List<martItem>();
+
+        //        foreach (DataRow row in mi.Tables["mart"].Rows)
+        //        {
+        //            MartItems.Add(new martItem
+        //            {
+        //                pumNm = Convert.ToString(row["pumNm"]),
+        //                itemName = Convert.ToString(row["itemName"]),
+        //                gugunNm = Convert.ToString(row["gugunNm"]),
+        //                bsshNm = Convert.ToString(row["bsshNm"]),
+        //                unitprice = Convert.ToInt32(row["unitprice"]),
+        //                adres = Convert.ToString(row["adres"]),
+        //                unit = Convert.ToDouble(row["unit"])
+        //            });
+        //            Console.WriteLine(MartItems);
+        //        }
+        //        this.DataContext = MartItems;
+        //    }
+        //}
+
+
+        private void CbopumNm_Select()
         {
+
             using (MySqlConnection conn = new MySqlConnection(Myconn.conn))
             {
                 var query = $@"SELECT pumNm,
@@ -226,10 +280,11 @@ namespace Wpf_Bus
                                     unit
                                     FROM
                                     mart
-                                    WHERE gugunNm = @gugunNm";
+                                    WHERE pumNm = @pumNm";
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@gugunNm", CbopumNm.SelectedValue.ToString());
+                cmd.Parameters.AddWithValue("@pumNm", CbopumNm.SelectedValue.ToString());
+
                 MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                 DataSet mi = new DataSet();
                 adapter.Fill(mi, "mart");
@@ -242,6 +297,7 @@ namespace Wpf_Bus
                         pumNm = Convert.ToString(row["pumNm"]),
                         itemName = Convert.ToString(row["itemName"]),
                         gugunNm = Convert.ToString(row["gugunNm"]),
+                        bsshNm = Convert.ToString(row["bsshNm"]),
                         unitprice = Convert.ToInt32(row["unitprice"]),
                         adres = Convert.ToString(row["adres"]),
                         unit = Convert.ToDouble(row["unit"])
@@ -249,6 +305,100 @@ namespace Wpf_Bus
                 }
                 this.DataContext = MartItems;
             }
+
+        }
+
+        //private void CbopumNm_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+
+        //    if (Cbogugun.DataContext != null)
+        //    {
+        //        using (MySqlConnection conn = new MySqlConnection(Myconn.conn))
+        //        {
+        //            var query = $@"SELECT pumNm,
+        //                            itemName,
+        //                            gugunNm,
+        //                            bsshNm,
+        //                            unitprice,
+        //                            adres,
+        //                            unit
+        //                            FROM
+        //                            mart
+        //                            WHERE pumNm = @pumNm AND gugunNm = @gugunNm";
+
+        //            MySqlCommand cmd = new MySqlCommand(query, conn);
+        //            cmd.Parameters.AddWithValue("@pumNm", CbopumNm.SelectedValue.ToString());
+        //            cmd.Parameters.AddWithValue("@gugunNm", Cbogugun.SelectedValue.ToString());
+        //            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+        //            DataSet mi = new DataSet();
+        //            adapter.Fill(mi, "mart");
+        //            List<martItem> MartItems = new List<martItem>();
+
+        //            foreach (DataRow row in mi.Tables["mart"].Rows)
+        //            {
+        //                MartItems.Add(new martItem
+        //                {
+        //                    pumNm = Convert.ToString(row["pumNm"]),
+        //                    itemName = Convert.ToString(row["itemName"]),
+        //                    gugunNm = Convert.ToString(row["gugunNm"]),
+        //                    bsshNm = Convert.ToString(row["bsshNm"]),
+        //                    unitprice = Convert.ToInt32(row["unitprice"]),
+        //                    adres = Convert.ToString(row["adres"]),
+        //                    unit = Convert.ToDouble(row["unit"])
+        //                });
+        //            }
+        //            this.DataContext = MartItems;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("지역을 먼저 선택해주세요!!!");
+        //        CbopumNm.SelectedIndex = -1;
+        //    }
+        //}
+
+
+        private void CboAll_Select()
+        {
+            using (MySqlConnection conn = new MySqlConnection(Myconn.conn))
+            {
+                var query = $@"SELECT pumNm,
+                                    itemName,
+                                    gugunNm,
+                                    bsshNm,
+                                    unitprice,
+                                    adres,
+                                    unit
+                                    FROM
+                                    mart
+                                    WHERE gugunNm = @gugunNm AND pumNm = @pumNm ";
+
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@gugunNm", Cbogugun.SelectedValue.ToString());
+                cmd.Parameters.AddWithValue("@pumNm", CbopumNm.SelectedValue.ToString());
+                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                DataSet mi = new DataSet();
+                adapter.Fill(mi, "mart");
+                List<martItem> MartItems = new List<martItem>();
+
+                foreach (DataRow row in mi.Tables["mart"].Rows)
+                {
+                    MartItems.Add(new martItem
+                    {
+                        pumNm = Convert.ToString(row["pumNm"]),
+                        itemName = Convert.ToString(row["itemName"]),
+                        gugunNm = Convert.ToString(row["gugunNm"]),
+                        bsshNm = Convert.ToString(row["bsshNm"]),
+                        unitprice = Convert.ToInt32(row["unitprice"]),
+                        adres = Convert.ToString(row["adres"]),
+                        unit = Convert.ToDouble(row["unit"])
+                    });
+                    Console.WriteLine(MartItems);
+                }
+                this.DataContext = MartItems;
+            }
         }
     }
 }
+
+

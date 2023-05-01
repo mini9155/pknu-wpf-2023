@@ -15,5 +15,6 @@ namespace Wpf_Bus
         public int unitprice { get; set; }
         public string adres { get; set; }
         public double unit {get ; set; }
+
     }
 }
