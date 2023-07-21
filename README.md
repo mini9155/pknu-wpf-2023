@@ -58,7 +58,7 @@
 		
 ## 9일차
 
--WPF 응용
+- WPF 응용
 	- 미세먼지확인 앱 완료
 		- MahaApps.Metro
 		- 데이터포털 OpenAPI
